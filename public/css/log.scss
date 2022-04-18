@@ -1,0 +1,94 @@
+*{list-style: none;
+  
+}
+.m-0-auto{
+    margin: 0 auto;
+}
+.w-100{
+    width: 100%;
+}
+#log_in{
+    overflow: hidden;
+    .row{
+        height: 100vh;
+    }
+    .log_text{
+        padding: 0 96px;
+    }
+    .bg-black{
+        background: #000;
+        opacity: 0.4;
+        height: 100%;
+    }
+    .left_area{
+        position: relative;
+        background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        background-size: cover;
+        .log_text{
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            color: white;
+        }
+        .social_media{
+            position: absolute;
+            top: 95%;
+            svg{
+                width: 24px;
+                height: 24px;
+            }
+            .fb_icon{
+                margin: 0 16px;
+            }
+        }
+    }
+    .right_area{
+        z-index: 100;
+        transition: 0.3s;
+        background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+        background-repeat: no-repeat;
+        background-size: cover;
+        @media(min-width:767px){
+            background: #162447 ;
+            background-image: none;
+        }
+        .bg-black{
+            z-index: -10;
+            position: absolute;
+        }
+        .wrapper{
+            padding: 0 64px;
+            z-index: 100;
+        }
+        .row{
+            height: auto;
+        }
+        .logo{
+            height: 64px;
+        }
+        .Icons{
+           .icon{
+               border: 2px solid white;
+               color: white;
+               width: 40px;
+               height: 40px;
+               &:nth-child(2){
+                   margin: 0 8px;
+               }
+           }
+        }
+        form{
+           
+            input{
+                height: 60px;
+                background: #000;
+                color: white;
+                font-weight: 700;
+            }
+            button{
+                background:#6366F1;
+            }
+        }
+    }
+}

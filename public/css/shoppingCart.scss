@@ -1,0 +1,112 @@
+#shopping{
+    background: #D3D3D3;
+    padding: 48px 0;
+    .container-lg{
+        background: whitesmoke;
+        padding: 40px;
+    }
+    .shopping_progress{
+        .progress-icon{
+            z-index: 999;
+            width: 40px;
+            height: 40px;
+            border: 5px solid whitesmoke;
+        }
+        .row{
+            position: relative;
+        }
+        .progress{
+            width: 78%;
+            left: 11%;
+            top: 18%;
+            position: absolute;
+        }
+    }
+    .orderList{
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        .order input{
+            background: whitesmoke;
+            width: 45px;
+            height: 24px;
+        }
+    }
+    .total{
+        span{
+            color: gray;
+        }
+    }
+    .link{
+        .btn{
+            padding: 10px 80px;
+        }
+    }
+}
+#shopping2{
+    background: #D3D3D3;
+    padding: 48px 0;
+    .container-lg{
+        background: whitesmoke;
+        padding: 40px;
+    }
+    .shopping_progress{
+        .progress-icon{
+            z-index: 999;
+            width: 40px;
+            height: 40px;
+            border: 5px solid whitesmoke;
+        }
+        .row{
+            position: relative;
+        }
+        .progress{
+            width: 78%;
+            left: 11%;
+            top: 18%;
+            position: absolute;
+        }
+    }
+    .orderList{
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        .order input{
+            background: whitesmoke;
+            width: 45px;
+            height: 24px;
+        }
+    }
+}
+#shopping3{
+    background: #D3D3D3;
+    padding: 48px 0;
+    .container-lg{
+        background: whitesmoke;
+        padding: 40px;
+    }
+    .shopping_progress{
+        .progress-icon{
+            z-index: 999;
+            width: 40px;
+            height: 40px;
+            border: 5px solid whitesmoke;
+        }
+        .row{
+            position: relative;
+        }
+        .progress{
+            width: 78%;
+            left: 11%;
+            top: 18%;
+            position: absolute;
+        }
+    } 
+    .cuz_data{
+        input{
+            background: whitesmoke;
+        }
+    }   
+}

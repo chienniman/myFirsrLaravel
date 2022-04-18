@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        @yield('pageTitle')
+        @yield('shoppingTitle')
+        @yield('shoppingTitle02')
+        @yield('shoppingTitle03')
+        @yield('shoppingTitle04')
+    </title>
+    {{-- 共用css --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/index.css">
-    <link
-     rel="stylesheet"
-     href="https://unpkg.com/swiper/swiper-bundle.min.css"
-   />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/shoppingCart.css">
+    <link rel="stylesheet" href="{{asset('css/index.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- 各自css --}}
+        @yield('css')
+        @yield('shoppingCart')
+        @yield('shoppingCart02')
+        @yield('shoppingCart03')
+        @yield('shoppingCart04')
 </head>
 <body>
     <div id="header" class="header container-xl  d-flex justify-content-between ps-2 pe-2">
         <nav class="navbar navbar-light">
             <div class="p-3">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="/bootstrap">
                 <img src="https://lesson-bootstrap.dev-hub.io/img/logo.svg"  class="d-inline-block align-text-top logo">
               </a>
             </div>
@@ -55,7 +63,7 @@
                 <li class="d-flex justify-content-center">
                     <div>
                         <span>
-                            <a href="./shoppingCart.html">
+                            <a href="/shoppingCart">
                             <svg class="cart_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                             </svg>
@@ -95,14 +103,14 @@
             </ul>
             <div class="function_zone d-flex align-items-center">
                 <div class="cart me-3">
-                    <a href="#">
+                    <a href="/shoppingCart">
                         <svg class="cart_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                         </svg>
                     </a>
                 </div>
                 <div class="log_in">
-                    <a href="./log_in.html">
+                    <a href="/log_in">
                         <svg class="user_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -112,127 +120,18 @@
             </div>
         </nav>
     </div>
-    <section id="shopping2">
-        <div class="container-lg rounded">
-            <h1 class="fw-bold">購物車</h1>
-            <div class="shopping_progress border-bottom border-1 mb-4 pb-4">
-                <div class="row">
-                        <div class="data col-3 d-flex flex-column align-items-center">
-                            <div class="progress-icon rounded-circle bg-success d-flex justify-content-center align-items-center text-white mb-3">
-                                1
-                            </div>
-                            <div>
-                                <span>確認購物車</span>
-                            </div>
-                        </div>
-                    <div class="data col-3 d-flex flex-column align-items-center">
-                        <div class="progress-icon rounded-circle d-flex bg-light justify-content-center align-items-center text-dark mb-3">
-                            2
-                        </div>
-                        <div>
-                            <span>付款與運送方式</span>
-                        </div>
-                    </div>
-                    <div class="data col-3 d-flex flex-column align-items-center">
-                        <div class="progress-icon rounded-circle d-flex bg-light justify-content-center align-items-center text-dark mb-3">
-                            3
-                        </div>
-                        <div>
-                            <span>填寫資料</span>
-                        </div>
-                    </div>
-                    <div class="data col-3 d-flex flex-column align-items-center">
-                        <div class="progress-icon rounded-circle d-flex bg-light justify-content-center align-items-center text-dark mb-3">
-                            4
-                        </div>
-                        <div>
-                            <span>完成訂購</span>
-                        </div>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                </div>
-            </div>
-            <div class="payway">
-                <span class="fs-3">付款方式</span>
-                <div class="mt-3">
-                    <form action="..." method="get">
-                        <label class="d-block ms-3 pt-4 pb-4  border-bottom">
-                            <input type="radio" name="payway" class="me-1">信用卡付款   
-                        </label>
-                        <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="payway" class="me-1">網路 ATM 
-                        </label>  
-                        <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="payway" class="me-1">超商代碼  
-                        </label>       
-                    </form>
-                </div>
-            </div>
-            <div class="develivery">
-                <span class="fs-3">運送方式</span>
-                <div class="mt-3">
-                    <form action="..." method="get">
-                        <label class="d-block ms-3 pt-4 pb-4  border-bottom">
-                            <input type="radio" name="develivery" class="me-1">黑貓宅配  
-                        </label>
-                        <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="develivery" class="me-1">超商店到店
-                        </label>       
-                    </form>
-                </div>
-            </div>
-            <div class="total d-flex flex-row-reverse">
-                <div class="p-0 col-3">
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>數量:</span>
-                            <p class="fw-bold fs-3 m-0">3</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>小記:</span>
-                            <p class="fw-bold fs-3 m-0">$24.90</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>運費:</span>
-                            <p class="fw-bold fs-3 m-0">$24.90</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>總計:</span>
-                            <p class="fw-bold fs-3 m-0">$24.90</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="link">
-                <div class="d-flex justify-content-between align-items-center mt-5">
-                    <div>
-                        <a href="./shoppingCart.html">
-                            <button class="btn btn-outline-primary btn-lg px-5">上一步</button>    
-                        </a>
-                    </div>
-                    <div>
-                        <a href="./shoppingCart03.html">
-                            <button class="btn btn-primary btn-lg px-5">下一步</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
+        @yield('indexMain')
+        @yield('shoppingMain')
+        @yield('shoppingMain02')
+        @yield('shoppingMain03')
+        @yield('shoppingMain04')
+    </main>
     <section id="footer">
         <div class="container">
             <div class="row">
                 <div class="box-wrapper col-md-3">
-                    <div class="d-flex align-items-center ">
-                        <div>
+                    <div class="d-flex align-items-center justify-content-center">
                         <a href="index.html">
                             <svg class="w-10 h-10 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" style="width: 40px; height:40px">
                                 <defs>
@@ -240,7 +139,7 @@
                                     .cls-1 {
                                       fill: #162446;
                                     }
-                    
+
                                     .cls-2 {
                                       fill: #fff;
                                     }
@@ -256,9 +155,8 @@
                               </svg>
                         </a>
                         <span class="ms-3">數位方塊</span>
-                        </div>
                     </div>
-                    <p class="text-start mt-3">
+                    <p>
                         Air plant banjo lyft occupy retro adaptogen indego
                     </p>
                 </div>
@@ -337,6 +235,9 @@
             </div>
         </div>
     </section>
+    {{-- 共用JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    {{-- 各自JS --}}
+        @yield('indexJS')
 </body>
 </html>

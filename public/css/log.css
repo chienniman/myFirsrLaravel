@@ -1,0 +1,115 @@
+* {
+  list-style: none;
+}
+
+.m-0-auto {
+  margin: 0 auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+#log_in {
+  overflow: hidden;
+}
+
+#log_in .row {
+  height: 100vh;
+}
+
+#log_in .log_text {
+  padding: 0 96px;
+}
+
+#log_in .bg-black {
+  background: #000;
+  opacity: 0.4;
+  height: 100%;
+}
+
+#log_in .left_area {
+  position: relative;
+  background-image: url("https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+  background-size: cover;
+}
+
+#log_in .left_area .log_text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+}
+
+#log_in .left_area .social_media {
+  position: absolute;
+  top: 95%;
+}
+
+#log_in .left_area .social_media svg {
+  width: 24px;
+  height: 24px;
+}
+
+#log_in .left_area .social_media .fb_icon {
+  margin: 0 16px;
+}
+
+#log_in .right_area {
+  z-index: 100;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background-image: url("https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 767px) {
+  #log_in .right_area {
+    background: #162447;
+    background-image: none;
+  }
+}
+
+#log_in .right_area .bg-black {
+  z-index: -10;
+  position: absolute;
+}
+
+#log_in .right_area .wrapper {
+  padding: 0 64px;
+  z-index: 100;
+}
+
+#log_in .right_area .row {
+  height: auto;
+}
+
+#log_in .right_area .logo {
+  height: 64px;
+}
+
+#log_in .right_area .Icons .icon {
+  border: 2px solid white;
+  color: white;
+  width: 40px;
+  height: 40px;
+}
+
+#log_in .right_area .Icons .icon:nth-child(2) {
+  margin: 0 8px;
+}
+
+#log_in .right_area form input {
+  height: 60px;
+  background: #000;
+  color: white;
+  font-weight: 700;
+}
+
+#log_in .right_area form button {
+  background: #6366F1;
+}
+/*# sourceMappingURL=log.css.map */
