@@ -8,6 +8,8 @@ use App\Http\Controllers\NewsController;
 
 use App\Http\Controllers\ShoppingCartController;
 
+use App\Http\Controllers\BannerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,9 +33,7 @@ Route::get('/shoppingCart04', [ShoppingCartController::class, 'step4']);
 
 Route::get('/bootstrap', function () {
     $data = DB::table('news')->get();
-    //get無論幾筆都是陣列
-    //抓舊三、新三、隨機三
-    $data1=DB::table('news')->whereBetween('id', [1, 3])->get();
+    $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
     //take(3)
     // $data2=DB::table('news')->whereBetween('id', [3, 5])->get();
     //orderBy('id','desc')
@@ -41,6 +41,28 @@ Route::get('/bootstrap', function () {
     // dd($data1);
     return view('index',compact('data1'));
 });
-Route::get('/log', function () {
-    return view('log_in');
+Route::get('/log_in', function () {
+    return view('/log_in');
 });
+
+Route::get('/comment', [Controller::class, 'comment']);
+Route::get('/comment/edit_board', [Controller::class, 'edit_board']);
+Route::get('/comment/save', [Controller::class, 'save_comment']);
+Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
+Route::get('/comment/delete/{id}', [Controller::class, 'delete_comment']);
+Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
+
+// Route::resource()
+//群組化統一管理
+Route::prefix('/banner')->group(function(){
+    Route::get('/', [BannerController::class, 'index']);
+    Route::get('/create', [BannerController::class, 'create']);
+    Route::get('/banner/store', [BannerController::class, 'store']);
+    Route::get('edit/{id}', [BannerController::class, 'edit']);
+    Route::get('/banner/delete/{id}', [BannerController::class, 'delete']);
+    Route::get('/banner/update/{id}', [BannerController::class, 'update']);
+});
+// Route::get('/banner', function () {
+//     return view('/banners/banner');
+// });
+Route::get('/itemsList', [Controller::class, 'itemList']);

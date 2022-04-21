@@ -2,7 +2,6 @@
     @section('pageTitle')
         模板化的主頁
     @endsection
-
     @section('css')
     <link
     rel="stylesheet"
@@ -33,7 +32,7 @@
 <div class="section section_row_cards">
     <div class="container ">
         <div class="text-center">
-            <h1>Raw Denim Heirloom Man Braid</h1>
+            <h1>比奇寶海洋生物大聚會</h1>
             <p>Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug.</p>
         </div>
         <div class="decoration_bar d-flex justify-content-center mt-4">
@@ -43,66 +42,22 @@
         </div>
     </div>
     <div class="card-wrapper row">
-        {{-- @foreach ( as )
-
-        @endforeach --}}
+        @foreach ($data1 as $news)
         <div class="card  col-md-4 text-center p-4">
             <div class="d-flex justify-content-center">
                 <div class="card_img_wrapper d-flex justify-content-center align-items-center rounded-circle">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="shooting_star_icon" viewBox="0 0 24 24">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
+                    @if (($news->img)!='' || ($news->img)!=null)
+                        <img src="{{$news->img}}" alt="" style="width:80px; border-radius:20px;">
+                    @else
+                        <div><p class="card-text">{{mb_substr($news->user,0,1,'utf-8')}}</p></div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
-              <h5 class="card-title">{{$title}}</h5>
-              <p class="card-text">{{$content}}</p>
-              <a href="#">Learn More
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg>
-              </a>
+              <h5 class="card-title">{{$news->user}}</h5>
             </div>
         </div>
-        {{-- <div class="card  col-md-4 text-center p-4" >
-            <div class="d-flex justify-content-center">
-                <div class="card_img_wrapper d-flex justify-content-center align-items-center rounded-circle">
-                    <svg class="scissor" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                        <circle cx="6" cy="6" r="3"></circle>
-                        <circle cx="6" cy="18" r="3"></circle>
-                        <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">The Catalyzer</h5>
-              <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard</p>
-              <a href="#">Learn More
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                </svg>
-              </a>
-            </div>
-        </div>
-        <div class="card col-md-4 text-center p-4" >
-            <div class="d-flex justify-content-center">
-                <div class="card_img_wrapper d-flex justify-content-center align-items-center rounded-circle">
-                    <svg class="user" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Neptune</h5>
-              <p class="card-text">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.</p>
-              <a href="#">Learn More
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg>
-              </a>
-            </div>
-        </div> --}}
+        @endforeach
     </div>
     <div class="d-flex justify-content-center">
         <button class="button btn-lg px-4 rounded">button</button>
