@@ -1,6 +1,6 @@
 @extends('layout.templateIndex')
 @section('shoppingTitle03')
-模板化的Banner編輯頁
+模板化Banner編輯頁
 @endsection
 @section('shoppingCart03')
 <link rel="stylesheet" href="/css/shoppingCart.css" />
@@ -13,18 +13,22 @@
 <h1 class="fw-bold mb-5">
     <div class="row justify-content-between">
         <div class="col-4">
-            Banner產品編輯頁
+            Banner編輯頁
         </div>
         <div class="col-2">
         </div>
     </div>
 </h1>
 <div class="comment_board">
-    <form action="">
+    <form action="/banner/update/{{$banner->id}}" method="post" enctype="multipart/form-data">
+        @csrf
         <div>
             <h3>
-                請在此新增
+                這是現在的圖片
             </h3>
+            <div>
+                <img src="{{$banner->img_path}}" alt="" style="width: 200px">
+            </div>
         </div>
        <div class="mb-3 mt-3">
             <label for="banner_img">1.選擇圖片</label>
@@ -37,6 +41,9 @@
         <div class="mb-3 mt-3">
             <label for="banner_weight">3.權重設定</label>
             <input type="number" name="banner_weight">
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">修改圖片</button>
         </div>
     </form>
 </div>

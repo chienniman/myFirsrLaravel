@@ -57,10 +57,10 @@ Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
 Route::prefix('/banner')->group(function(){
     Route::get('/', [BannerController::class, 'index']);
     Route::get('/create', [BannerController::class, 'create']);
-    Route::get('/banner/store', [BannerController::class, 'store']);
-    Route::get('edit/{id}', [BannerController::class, 'edit']);
-    Route::get('/banner/delete/{id}', [BannerController::class, 'delete']);
-    Route::get('/banner/update/{id}', [BannerController::class, 'update']);
+    Route::post('/store', [BannerController::class, 'store']);
+    Route::get('/edit/{id}', [BannerController::class, 'edit']);
+    Route::post('/delete/{id}', [BannerController::class, 'delete']);
+    Route::post('/update/{id}', [BannerController::class, 'update']);
 });
 // Route::get('/banner', function () {
 //     return view('/banners/banner');

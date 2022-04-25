@@ -41,7 +41,32 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ( $banners as $banner)
             <tr>
+                <td>
+                    <p>{{$banner->id}}</p>
+                    <img src="{{$banner->img_path}}" alt="" style="opacity:{{$banner->img_opacity}}">
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="row col-6">
+                            <p class="text-center pt-3">{{$banner->weight}}</p>
+                        </div>
+                        <div class="row col-6 flex-column align-items-center">
+                            <a href="/banner/edit/{{$banner->id}}" class="btn btn-success col-6 mb-3">編輯</a>
+                            <button class="btn btn-danger col-6"
+                            onclick="document.querySelector('#deleteForm{{$banner->id}}').submit();"
+                            >刪除</button>
+                            <form id="deleteForm{{$banner->id}}"
+                            action="/banner/delete/{{$banner->id}}" method="post" hidden>
+                            @csrf
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+            {{-- <tr>
                 <td>
                     <img src="https://dummyimage.com/500x300" alt="">
                 </td>
@@ -88,23 +113,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="https://dummyimage.com/500x300" alt="">
-                </td>
-                <td>
-                    <div class="row">
-                        <div class="row col-6">
-                            <p class="text-center pt-3">1</p>
-                        </div>
-                        <div class="row col-6 flex-column align-items-center">
-                            <a href="" class="btn btn-success col-6 mb-3">編輯</a>
-                            <a href="" class="btn btn-danger col-6">刪除</a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+            </tr> --}}
         </tbody>
     </table>
 </div>

@@ -20,7 +20,8 @@
     </div>
 </h1>
 <div class="comment_board">
-    <form action="">
+    <form action="/banner/store" method="post" enctype="multipart/form-data">
+        @csrf
         <div>
             <h3>
                 請在此新增
