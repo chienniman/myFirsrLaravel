@@ -9,6 +9,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ShoppingCartController;
 
 use App\Http\Controllers\BannerController;
+use App\Models\Item;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,14 @@ Route::get('/shoppingCart04', [ShoppingCartController::class, 'step4']);
 Route::get('/bootstrap', function () {
     $data = DB::table('news')->get();
     $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
+    $item=Item::orderby('id','desc')->get();
+    $randomItem=Item::inRandomOrder()->take(1)->get();
     //take(3)
     // $data2=DB::table('news')->whereBetween('id', [3, 5])->get();
     //orderBy('id','desc')
     // $data3=DB::table('news')->inRandomOrder()->take(3)->get();
     // dd($data1);
-    return view('index',compact('data1'));
+    return view('index',compact('data1','item','randomItem'));
 });
 Route::get('/log_in', function () {
     return view('/log_in');
@@ -65,4 +68,10 @@ Route::prefix('/banner')->group(function(){
 // Route::get('/banner', function () {
 //     return view('/banners/banner');
 // });
+//商品上架區
 Route::get('/itemsList', [Controller::class, 'itemList']);
+Route::post('/itemsList/store', [Controller::class, 'store']);
+Route::get('/itemsList/create', [Controller::class, 'create_items']);
+Route::post('/itemsList/update/{id}', [Controller::class, 'update_items']);
+Route::get('/itemsList/delete/{id}', [Controller::class, 'delete_items']);
+Route::get('/itemsList/edit{id}', [Controller::class, 'edit_items']);
