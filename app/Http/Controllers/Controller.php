@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 class Controller extends BaseController
@@ -67,17 +68,28 @@ class Controller extends BaseController
     public function itemList(){
         $item=Item::orderby('id','desc')->get();
         return view('Items/itemsList',compact('item'));
+
     }
     public function create_items(){
         return view('Items/items_create');
     }
     public function store(Request $request)
     {
+        // dd($request->all());
         $path=Storage::disk('local')->put('public/banner', $request->items_img);
         $path='/'.str_replace("public","storage",$path);
-        Item::create([
+        $item=Item::create([
             "items_img_path"=>$path,
         ]);
+       foreach($request->second_img as $key=>$value){
+        $path=Storage::disk('local')->put('public/banner',$value);
+        $path='/'.str_replace("public","storage",$path);
+        Product::create([
+            "img_path"=>$path,
+            'product_id'=>$item->id,
+        ]);
+       }
+
         return redirect('itemsList/create');
     }
     public function delete_items($id)
@@ -90,6 +102,7 @@ class Controller extends BaseController
     }
     public function edit_items($id)
     {
+
         $item=Item::find($id);
         return view('Items/items_edit',compact('item'));
     }
@@ -116,5 +129,11 @@ class Controller extends BaseController
         // $banners=Banner::orderby('id','desc')->get();
         return redirect('/itemsList');
     }
-
+    //對於次要圖片的編輯、刪除、新增
+    public function delete_img(){
+        $img=Product::find($id);
+        $path=Storage::disk('local')->put('public/banner', $request->items_img);
+        $path='/'.str_replace("public","storage",$path);
+        Product::where('id',$id)->delete();
+    }
 }

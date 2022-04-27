@@ -7,6 +7,7 @@
 @endsection
 <body>
 @section('shoppingMain03')
+
 <section id="shopping3">
 <div class="container-lg rounded">
 <h1 class="fw-bold mb-5">商品管理區</h1>
@@ -77,6 +78,23 @@
                             </div>
                         </div>
                     </div>
+                    <div >
+                        <div class="mt-5 d-flex flex-wrap">
+                            <div>
+                                次要圖片
+                            </div>
+                            @foreach ($product->imgs as $item)
+                            <div id="sup_img">
+                                <div>
+                                    <img src="{{$item->img_path}}" alt="" >
+                                </div>
+                                <button class="btn btn-danger" onclick="delete_img(id)">
+                                    刪除圖片
+                                </button>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -85,5 +103,21 @@
 </div>
 </div>
 </section>
+@endsection
+@section('js')
+    <script>
+        function delete_img(id){
+            let formData=new FormData();
+            formData.append('_method','DELETE');
+            formData.append('_token',`{{csrf_token()}}`);
+            fetch("/product/delete_img"+id,{
+                method="POST",
+                body:formData
+            }).then(function(response){
+                let element=document.querySelector('#sup_img'+id)
+                element.parentNode.removeChild(element);
+            })
+        }
+    </script>
 @endsection
 

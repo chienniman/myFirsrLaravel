@@ -61,18 +61,22 @@
                             <label for="items_img">1.商品圖片</label>
                             <input type="file" name="items_img">
                        </div>
-                       {{-- <div class="mb-3 mt-3">
-                            <label for="banner_opacity">2.商品名稱</label>
-                            <input type="text" name="banner_opacity">
+                       <div class="mb-3 mt-3">
+                        <label for="second_img">2.商品次要圖片</label>
+                        <input type="file" name="second_img[]" multiple>
+                        </div>
+                       <div class="mb-3 mt-3">
+                            <label for="items_name">3.商品名稱</label>
+                            <input type="text" name="items_name">
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="banner_weight">3.商品價格</label>
-                            <input type="text" name="banner_weight">
+                            <label for="items_price">4.商品價格</label>
+                            <input type="text" name="items_price">
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="banner_weight"> 4.商品描述</label>
-                            <input type="text" name="banner_weight">
-                        </div> --}}
+                            <label for="items_context"> 5.商品描述</label>
+                            <input type="text" name="items_context">
+                        </div>
                         <div>
                             <button class="btn btn-primary"  type="submit">確定送出</button>
                             <a href="/itemsList" class="btn btn-danger">忍痛退出</a>
