@@ -1,4 +1,4 @@
-@extends('layout.templateIndex')
+@extends('layouts.app')
 @section('shoppingTitle03')
 模板化的Banner管理頁
 @endsection
@@ -23,7 +23,7 @@
     </div>
 </h1>
 <div class="comment_board">
-    <table id="table_id" class="display">
+    <table id="table_id" class="display" style="width: 100%">
         <thead>
             <tr>
                 <th>圖片預覽</th>

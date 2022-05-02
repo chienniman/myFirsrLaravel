@@ -38,7 +38,10 @@
                     <form action="/itemsList/update/{{$item->id}}" method="post" enctype="multipart/form-data">
                         <div class="col-4">
                             <div class="mt-5">
-                                <img src="{{$item->items_img_path}}" alt="">
+                                <span>目前主要商品的圖片</span>
+                                <div>
+                                    <img src="{{$item->items_img_path}}" alt="">
+                                </div>
                             </div>
                         </div>
                         @csrf
@@ -51,6 +54,27 @@
                             <label for="items_img">1.商品圖片</label>
                             <input type="file" name="items_img">
                        </div>
+
+                        <div class="d-flex">
+                            <div class="mb-3 mt-3">
+                                <label for="secondary_items_img">2.次要商品圖片的新增</label>
+                                <input type="file" name="secondary_items_img">
+                           </div>
+                            @foreach ($item->imgs as $item)
+                            <div class="me-1">
+                                <span>
+                                    次要商品的圖片{{$item->id}}
+                                </span>
+                                <div>
+                                    <img src="{{$item->img_path}}" alt="" style="width: 200px">
+                                </div>
+                                <div>
+                                    <a href="/itemsList/delete_imgs/{{$item->id}}" class="btn btn-danger">刪除</a>
+                                </div>
+                            </div>
+                            @endforeach
+
+                        </div>
                         <div>
                             <button class="btn btn-primary"  type="submit">更新資料</button>
                             <a href="/itemsList" class="btn btn-danger">忍痛退出</a>

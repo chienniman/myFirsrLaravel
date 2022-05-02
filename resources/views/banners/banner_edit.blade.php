@@ -29,6 +29,7 @@
             <div>
                 <img src="{{$banner->img_path}}" alt="" style="width: 200px">
             </div>
+           
         </div>
        <div class="mb-3 mt-3">
             <label for="banner_img">1.選擇圖片</label>

@@ -40,12 +40,12 @@
                     </svg>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li >
+                   <li >
                       <a class="dropdown-item d-flex justify-content-center" href="/comment">
                           comments
                       </a>
                   </li>
-                  <li >
+                  {{-- <li >
                     <a class="dropdown-item d-flex justify-content-center" href="/banner">
                         Banners Mangement
                     </a>
@@ -54,7 +54,7 @@
                     <a class="dropdown-item d-flex justify-content-center" href="/itemsList">
                         Items List
                     </a>
-                </li>
+                </li>  --}}
                 <li >
                     <a class="dropdown-item d-flex justify-content-center" href="#">
                         Contact
@@ -86,7 +86,7 @@
                     <a class="nav-link text-black" href="/comment">Comments</a>
                 </li>
             </ul>
-            <ul class="p-0 mb-0 d-flex align-items-center">
+            {{-- <ul class="p-0 mb-0 d-flex align-items-center">
                 <li>
                     <a class="nav-link" href="/banner">Banners Mangement</a>
                 </li>
@@ -95,7 +95,7 @@
                 <li>
                     <a class="nav-link" href="/itemsList">Items List</a>
                 </li>
-            </ul>
+            </ul> --}}
             <ul class="p-0 mb-0 d-flex align-items-center">
                 <li>
                     <a class="nav-link" href="#">Contact</a>

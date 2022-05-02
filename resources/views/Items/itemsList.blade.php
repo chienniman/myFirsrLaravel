@@ -1,4 +1,4 @@
-@extends('layout.templateIndex')
+@extends('layouts.app')
 @section('shoppingTitle03')
 模板化的商品頁
 @endsection
@@ -7,7 +7,6 @@
 @endsection
 <body>
 @section('shoppingMain03')
-
 <section id="shopping3">
 <div class="container-lg rounded">
 <h1 class="fw-bold mb-5">商品管理區</h1>
@@ -74,7 +73,7 @@
                                 <a href="/itemsList/edit{{$product->id}}" class="btn btn-primary">編輯</a>
                             </div>
                             <div>
-                                <a href ="/itemsList/delete/{{$product->id}}" class="btn btn-danger">刪除</a>
+                                <a href ="/itemsList/delete/{{$product->id}}" class="btn btn-danger">刪除全部</a>
                             </div>
                         </div>
                     </div>
@@ -88,9 +87,9 @@
                                 <div>
                                     <img src="{{$item->img_path}}" alt="" >
                                 </div>
-                                <button class="btn btn-danger" onclick="delete_img(id)">
-                                    刪除圖片
-                                </button>
+                                {{-- <a href="/itemsList/delete_img/{{$item->id}}" class="btn btn-danger">
+                                    刪除單張圖片
+                                </a> --}}
                             </div>
                             @endforeach
                         </div>
@@ -104,7 +103,7 @@
 </div>
 </section>
 @endsection
-@section('js')
+{{-- @section('js')
     <script>
         function delete_img(id){
             let formData=new FormData();
@@ -119,5 +118,5 @@
             })
         }
     </script>
-@endsection
+@endsection --}}
 

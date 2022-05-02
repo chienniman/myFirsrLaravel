@@ -15,7 +15,9 @@ class BannerController extends Controller
     public function index()
     {
         $banners=Banner::orderby('id','desc')->get();
-        return view('banners/banner',compact('banners'));
+        $header='';
+        $slot='';
+        return view('banners/banner',compact('banners','header','slot'));
     }
 
     /**

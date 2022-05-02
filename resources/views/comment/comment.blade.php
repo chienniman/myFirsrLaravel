@@ -33,12 +33,14 @@
                         <p>發文時間</p>&nbsp;&nbsp;
                         <p>{{$news->created_at}}</p>
                         <div class="d-flex ms-3">
+                            @auth
                             <div class="me-3">
                                 <a href="/comment/edit/{{$news->id}}" class="btn btn-primary">編輯</a>
                             </div>
                             <div>
                                 <a href ="/comment/delete/{{$news->id}}" class="btn btn-danger">刪除</a>
                             </div>
+                            @endauth
                         </div>
                     </div>
                 </div>

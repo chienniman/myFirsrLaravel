@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\NewsController;
@@ -21,7 +20,6 @@ use App\Models\Item;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [NewsController::class, 'index']);
 
 Route::get('/shoppingCart', [ShoppingCartController::class, 'step1']);
@@ -47,17 +45,30 @@ Route::get('/bootstrap', function () {
 Route::get('/log_in', function () {
     return view('/log_in');
 });
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::get('/comment', [Controller::class, 'comment']);
+// Route::get('/comment/edit_board', [Controller::class, 'edit_board']);
+// Route::get('/comment/save', [Controller::class, 'save_comment']);
+// Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
+// Route::get('/comment/delete/{id}', [Controller::class, 'delete_comment']);
+// Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
+//comment相關路由
+Route::prefix('/comment')->group(function(){
+    Route::get('/', [Controller::class, 'comment']);
+    Route::get('//edit_board', [Controller::class, 'edit_board']);
+    Route::get('/save', [Controller::class, 'save_comment']);
+    Route::get('/edit/{id}', [Controller::class, 'edit_comment']);
+    Route::get('/delete/{id}', [Controller::class, 'delete_comment']);
+    Route::get('/update/{id}', [Controller::class, 'update_comment']);
+});
 
-Route::get('/comment', [Controller::class, 'comment']);
-Route::get('/comment/edit_board', [Controller::class, 'edit_board']);
-Route::get('/comment/save', [Controller::class, 'save_comment']);
-Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
-Route::get('/comment/delete/{id}', [Controller::class, 'delete_comment']);
-Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
+
 
 // Route::resource()
 //群組化統一管理
-Route::prefix('/banner')->group(function(){
+Route::prefix('/banner')->middleware(['auth'])->group(function(){
     Route::get('/', [BannerController::class, 'index']);
     Route::get('/create', [BannerController::class, 'create']);
     Route::post('/store', [BannerController::class, 'store']);
@@ -69,9 +80,37 @@ Route::prefix('/banner')->group(function(){
 //     return view('/banners/banner');
 // });
 //商品上架區
-Route::get('/itemsList', [Controller::class, 'itemList']);
-Route::post('/itemsList/store', [Controller::class, 'store']);
-Route::get('/itemsList/create', [Controller::class, 'create_items']);
-Route::post('/itemsList/update/{id}', [Controller::class, 'update_items']);
-Route::get('/itemsList/delete/{id}', [Controller::class, 'delete_items']);
-Route::get('/itemsList/edit{id}', [Controller::class, 'edit_items']);
+// Route::get('/itemsList', [Controller::class, 'itemList']);
+// Route::post('/itemsList/store', [Controller::class, 'store_item']);
+// Route::get('/itemsList/create', [Controller::class, 'create_items']);
+// Route::post('/itemsList/update/{id}', [Controller::class, 'update_items']);
+// Route::get('/itemsList/delete/{id}', [Controller::class, 'delete_items']);
+// Route::get('/itemsList/edit{id}', [Controller::class, 'edit_items']);
+
+Route::prefix('/itemsList')->middleware(['auth'])->group(function(){
+    Route::get('/', [Controller::class, 'itemList']);
+    Route::post('/store', [Controller::class, 'store_item']);
+    Route::get('/create', [Controller::class, 'create_items']);
+    Route::post('/update/{id}', [Controller::class, 'update_items']);
+    Route::get('/delete/{id}', [Controller::class, 'delete_items']);
+    Route::get('/edit{id}', [Controller::class, 'edit_items']);
+    Route::get('/delete_imgs/{id}', [Controller::class, 'delete_imgs']);
+});
+
+
+
+
+
+Route::get('/dashboard', function () {
+    $data = DB::table('news')->get();
+    $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
+    $item=Item::orderby('id','desc')->get();
+    $randomItem=Item::inRandomOrder()->take(1)->get();
+    return view('dashboard',compact('data1','item','randomItem'));
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/test', function () {
+    return view('/auth/login');
+});
