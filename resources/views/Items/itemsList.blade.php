@@ -59,14 +59,11 @@
                         </div>
                     </div>
                     <div class="col-8 row">
-                        <div class="col-2 ps-5">軒轅劍</div>
-                        <div class="col-2 ps-5">10000</div>
-                        <div class="col-8">傳說中，軒轅劍是一把黃金色的聖道古劍，是由眾神采首山之銅所鑄，黃金色的千年古劍，
-                            劍身一面刻日月星辰，一面刻山川草木;劍柄一面書農耕畜養之術，一面書四海一統之策。傳說
-                            是天界諸神賜於軒轅黃帝擊敗蚩尤的曠世神劍，其內蘊藏著無窮的力量，為斬妖除魔的神劍。天
-                            界諸神將此劍賜予軒轅黃帝擊敗蚩尤之曠世神劍。此劍後傳與夏禹，大禹治水時立下汗馬功勞，夏朝憑此立國。幾
-                            百年後，夏朝國君無道，此劍輾轉被商湯所得，商湯持此劍取天下，大敗上古三大邪刀，再次建立新的王國——商朝。最
-                            後，商朝後期也開始動亂，這把聖道神劍也不知所蹤。
+                        <div class="col-2 ps-5">{{$product->items_name}}</div>
+                        <div class="col-2 ps-5">{{$product->items_price}}</div>
+                        <div class="col-8 row justify-content-between">{{$product->items_context}}
+                            <div class="col-5 ms-6">{{$product->created_at}}
+                        </div>
                         </div>
                         <div class="d-flex ms-3 flex-row-reverse">
                             <div class="ms-3">

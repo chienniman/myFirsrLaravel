@@ -9,7 +9,16 @@
 @section('shoppingMain03')
 <section id="shopping3">
 <div class="container-lg rounded">
-<h1 class="fw-bold mb-5">留言板</h1>
+<h1 class="fw-bold mb-5">留言板
+    <span class="h5">
+        目前狀態
+        @if (Auth::check())
+            有登入
+        @else
+            沒登入
+        @endif
+    </span>
+</h1>
 <div class="comment_board">
     @foreach ($data as $news)
     <div class="comment border-bottom border-3 mb-3">

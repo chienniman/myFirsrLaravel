@@ -283,7 +283,9 @@
     <div class="container-xl">
         <div class="row">
             <div class="col-lg-6">
-                <img class="img-fluid" src="{{$randomItem[0]->items_img_path}}" alt="">
+                <a href="/innerpage/{{$randomItem[0]->id}}">
+                    <img class="img-fluid" src="{{$randomItem[0]->items_img_path}}" alt="">
+                </a>
             </div>
             <div class="col-lg-6 description">
                 <h2 class="fs-6">BRAND NAME</h2>
@@ -377,14 +379,16 @@
     <div class="container">
         <div class="row">
             @foreach ($item as $product )
-            <div class="card col-md-6 col-lg-3" >
-                <img src="{{$product->items_img_path}}" class="card-img-top img-fluid" style="height:256px">
-                <div class="card-body">
-                  <h5 class="card-title fs-6">CATEGORY</h5>
-                  <p class="card-text fs-6">The Catalyzer</p>
-                  <p>$16.00</p>
+            <a href="/innerpage/{{$product->id}}" class="card col-md-6 col-lg-3">
+                <div >
+                    <img src="{{$product->items_img_path}}" class="card-img-top img-fluid" style="height:256px">
+                    <div class="card-body">
+                      <h5 class="card-title fs-6">CATEGORY</h5>
+                      <p class="card-text fs-6">The Catalyzer</p>
+                      <p>$16.00</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
             {{-- <div class="card col-md-6 col-lg-3" >
                 <img src="https://dummyimage.com/400x400 " class="card-img-top img-fluid" style="height:256px">

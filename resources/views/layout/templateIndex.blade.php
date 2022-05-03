@@ -26,7 +26,7 @@
     <div id="header" class="header container-xl  d-flex justify-content-between ps-2 pe-2">
         <nav class="navbar navbar-light">
             <div class="p-3">
-              <a class="navbar-brand" href="/bootstrap">
+              <a class="navbar-brand" href="/">
                 <img src="https://lesson-bootstrap.dev-hub.io/img/logo.svg"  class="d-inline-block align-text-top logo">
               </a>
             </div>
@@ -45,16 +45,6 @@
                           comments
                       </a>
                   </li>
-                  {{-- <li >
-                    <a class="dropdown-item d-flex justify-content-center" href="/banner">
-                        Banners Mangement
-                    </a>
-                </li>
-                <li >
-                    <a class="dropdown-item d-flex justify-content-center" href="/itemsList">
-                        Items List
-                    </a>
-                </li>  --}}
                 <li >
                     <a class="dropdown-item d-flex justify-content-center" href="#">
                         Contact
@@ -74,6 +64,17 @@
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                             </svg>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                        @auth
+                            <a href="/log_in"> {{Auth::user()->name}}您好 登出</a>
+                        @endauth
+
+                        @guest
+                            <a href="/log_in">訪客您好 登入</a>
+                        @endguest
                         </span>
                     </div>
                 </li>
@@ -116,6 +117,29 @@
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
                     </a>
+                </div>
+                <div>
+                    <span>
+                    @auth
+                        <div class="d-flex">
+                            <li>
+                                {{Auth::user()->name}}您好
+                            </li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('登出') }}
+                                </x-dropdown-link>
+                            </form>
+                        </div>
+                    @endauth
+
+                    @guest
+                        <a href="/log_in">訪客您好 登入</a>
+                    @endguest
+                    </span>
                 </div>
             </div>
         </nav>

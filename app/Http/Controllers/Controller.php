@@ -66,6 +66,10 @@ class Controller extends BaseController
 
     }
     //商品相關
+    public function innerpage($id){
+        $item=Item::where('id',$id)->get();
+        return view('Items/innerpage',compact('item'));
+    }
     public function itemList(){
         $item=Item::orderby('id','desc')->get();
         $header='';
@@ -83,6 +87,9 @@ class Controller extends BaseController
         $path='/'.str_replace("public","storage",$path);
         $item=Item::create([
             "items_img_path"=>$path,
+            "items_name"=>$request->items_name,
+            "items_price"=>$request->items_price,
+            "items_context"=>$request->items_context,
         ]);
         //逐一上傳
        foreach($request->second_img as $key=>$value){

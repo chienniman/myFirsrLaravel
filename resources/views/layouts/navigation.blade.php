@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a :href="route('dashboard')">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
@@ -15,11 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="'/itemsList'" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="'/itemsList'" :active="request()->Is('itemsList*')">
                        商品管理頁面
                     </x-nav-link>
-                    <x-nav-link :href="'/banner'" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="'/banner'" :active="request()->Is('banner*')">
                         banner管理
+                    </x-nav-link>
+                    <x-nav-link :href="'/'">
+                        去主頁
                     </x-nav-link>
                 </div>
             </div>
@@ -43,7 +46,6 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

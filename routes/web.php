@@ -30,7 +30,7 @@ Route::get('/shoppingCart03', [ShoppingCartController::class, 'step3']);
 
 Route::get('/shoppingCart04', [ShoppingCartController::class, 'step4']);
 
-Route::get('/bootstrap', function () {
+Route::get('/', function () {
     $data = DB::table('news')->get();
     $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
     $item=Item::orderby('id','desc')->get();
@@ -45,9 +45,9 @@ Route::get('/bootstrap', function () {
 Route::get('/log_in', function () {
     return view('/log_in');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 // Route::get('/comment', [Controller::class, 'comment']);
 // Route::get('/comment/edit_board', [Controller::class, 'edit_board']);
 // Route::get('/comment/save', [Controller::class, 'save_comment']);
@@ -96,7 +96,8 @@ Route::prefix('/itemsList')->middleware(['auth'])->group(function(){
     Route::get('/edit{id}', [Controller::class, 'edit_items']);
     Route::get('/delete_imgs/{id}', [Controller::class, 'delete_imgs']);
 });
-
+// 商品內頁
+Route::get('/innerpage/{id}', [Controller::class, 'innerpage']);
 
 
 
@@ -107,7 +108,7 @@ Route::get('/dashboard', function () {
     $item=Item::orderby('id','desc')->get();
     $randomItem=Item::inRandomOrder()->take(1)->get();
     return view('dashboard',compact('data1','item','randomItem'));
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','power'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
