@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ShoppingCartController;
 
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\AccountController;
 use App\Models\Item;
 
 /*
@@ -21,15 +22,11 @@ use App\Models\Item;
 |
 */
 Route::get('/', [NewsController::class, 'index']);
-
+Route::get('/add/product', [ShoppingCartController::class, 'add_product']);
 Route::get('/shoppingCart', [ShoppingCartController::class, 'step1']);
-
 Route::get('/shoppingCart02', [ShoppingCartController::class, 'step2']);
-
 Route::get('/shoppingCart03', [ShoppingCartController::class, 'step3']);
-
 Route::get('/shoppingCart04', [ShoppingCartController::class, 'step4']);
-
 Route::get('/', function () {
     $data = DB::table('news')->get();
     $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
@@ -66,8 +63,7 @@ Route::prefix('/comment')->group(function(){
 
 
 
-// Route::resource()
-//群組化統一管理
+//banner相關路由
 Route::prefix('/banner')->middleware(['auth'])->group(function(){
     Route::get('/', [BannerController::class, 'index']);
     Route::get('/create', [BannerController::class, 'create']);
@@ -86,7 +82,7 @@ Route::prefix('/banner')->middleware(['auth'])->group(function(){
 // Route::post('/itemsList/update/{id}', [Controller::class, 'update_items']);
 // Route::get('/itemsList/delete/{id}', [Controller::class, 'delete_items']);
 // Route::get('/itemsList/edit{id}', [Controller::class, 'edit_items']);
-
+//itemsList相關路由
 Route::prefix('/itemsList')->middleware(['auth'])->group(function(){
     Route::get('/', [Controller::class, 'itemList']);
     Route::post('/store', [Controller::class, 'store_item']);
@@ -98,10 +94,9 @@ Route::prefix('/itemsList')->middleware(['auth'])->group(function(){
 });
 // 商品內頁
 Route::get('/innerpage/{id}', [Controller::class, 'innerpage']);
+Route::post('/add_to_cart', [Controller::class, 'add_to_cart']);
 
-
-
-
+//後台相關路由
 Route::get('/dashboard', function () {
     $data = DB::table('news')->get();
     $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
@@ -114,4 +109,14 @@ require __DIR__.'/auth.php';
 
 Route::get('/test', function () {
     return view('/auth/login');
+});
+//會員管理相關路由
+Route::prefix('/account')->group(function(){
+    Route::get('/', [AccountController::class, 'index']);
+    Route::post('/store', [AccountController::class, 'store_account']);
+    Route::get('/create', [AccountController::class, 'create']);
+    Route::post('/update/{id}', [AccountController::class, 'update_items']);
+    Route::get('/delete/{id}', [AccountController::class, 'delete_items']);
+    Route::get('/edit{id}', [AccountController::class, 'edit_items']);
+    Route::get('/delete_imgs/{id}', [AccountController::class, 'delete_imgs']);
 });

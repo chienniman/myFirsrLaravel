@@ -31,25 +31,13 @@
                             <div class="col-3">
                                 商品描述
                             </div>
+                             <div class="col-3">
+                                商品數量
+                            </div>
                          </div>
                     </div>
                 </div>
                 <div class="row text border border-secondary">
-                    {{-- <div class="col-4">
-                        <div class="mt-5">
-                            <img src="https://th.bing.com/th/id/OIP.HxKxf8D_C9yExZlmwZIRDgHaFj?w=238&h=180&c=7&r=0&o=5&pid=1.7" alt="">
-                        </div>
-                    </div>
-                    <div class="col-8 row">
-                        <div class="col-2 ps-5">軒轅劍</div>
-                        <div class="col-2 ps-5">10000</div>
-                        <div class="col-8">傳說中，軒轅劍是一把黃金色的聖道古劍，是由眾神采首山之銅所鑄，黃金色的千年古劍，
-                            劍身一面刻日月星辰，一面刻山川草木;劍柄一面書農耕畜養之術，一面書四海一統之策。傳說
-                            是天界諸神賜於軒轅黃帝擊敗蚩尤的曠世神劍，其內蘊藏著無窮的力量，為斬妖除魔的神劍。天
-                            界諸神將此劍賜予軒轅黃帝擊敗蚩尤之曠世神劍。此劍後傳與夏禹，大禹治水時立下汗馬功勞，夏朝憑此立國。幾
-                            百年後，夏朝國君無道，此劍輾轉被商湯所得，商湯持此劍取天下，大敗上古三大邪刀，再次建立新的王國——商朝。最
-                            後，商朝後期也開始動亂，這把聖道神劍也不知所蹤。</div>
-                    </div> --}}
                     <form action="/itemsList/store" method="post" enctype="multipart/form-data">
                         @csrf
                         <div>
@@ -76,6 +64,10 @@
                         <div class="mb-3 mt-3">
                             <label for="items_context"> 5.商品描述</label>
                             <input type="text" name="items_context">
+                        </div>
+                         <div class="mb-3 mt-3">
+                            <label for="items_number"> 6.商品數量</label>
+                            <input type="number" name="items_number">
                         </div>
                         <div>
                             <button class="btn btn-primary"  type="submit">確定送出</button>

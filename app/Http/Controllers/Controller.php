@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use App\Models\Item;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\ShoppingCart;
 use App\Controllers\FilesController;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -66,10 +68,54 @@ class Controller extends BaseController
 
     }
     //商品相關
+
     public function innerpage($id){
+       
         $item=Item::where('id',$id)->get();
+        $item=$item[0];
         return view('Items/innerpage',compact('item'));
     }
+    public function add_to_cart(Request $request){
+        // $product_id=$request->product_id;
+        // $residual_amount=Item::where('id',$product_id)->get()->items_number;
+        // // 購買大於顧存
+        // if( $request->qty>$residual_amount){
+        //     $result=[
+        //         'result'=>'error',
+        //         'message'=>'超過庫存數量，請聯絡客服'
+        //     ];
+        //     return $result;
+        // }
+        // //購買數目異常
+        // elseif( $request->qty<1){
+        //     $result=[
+        //         'result'=>'error',
+        //         'message'=>'購買數量異常，請重新嘗試'
+        //     ];
+        //     return $result;
+        // }
+        // //尚未登入卻想要購買
+        // elseif(!Auth::check()){
+        //     $result=[
+        //         'result'=>'error',
+        //         'message'=>'請登入後再購買'
+        //     ];
+        //     return $result;
+        // }
+        $id = Auth::id();
+        ShoppingCart::create([
+        "product_id"=>$request->product_id,
+        "user_id"=>$id,
+        "qty"=>$request->qty,
+        ]);
+        //購買成功
+        $result=[
+            'result'=>'success',
+            'message'=>'購買成功'
+        ];
+        return $result;
+    }
+
     public function itemList(){
         $item=Item::orderby('id','desc')->get();
         $header='';
@@ -86,10 +132,12 @@ class Controller extends BaseController
         $path=Storage::disk('local')->put('public/banner', $request->items_img);
         $path='/'.str_replace("public","storage",$path);
         $item=Item::create([
+            
             "items_img_path"=>$path,
             "items_name"=>$request->items_name,
             "items_price"=>$request->items_price,
             "items_context"=>$request->items_context,
+            "items_number"=>$request->items_number,
         ]);
         //逐一上傳
        foreach($request->second_img as $key=>$value){
@@ -139,8 +187,6 @@ class Controller extends BaseController
                     'img_path' => $path,
                     'product_id'=>$item->id,
                 ]);
-
-
         }
 
         $item->save();
