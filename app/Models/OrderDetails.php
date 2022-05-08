@@ -23,7 +23,7 @@ use App\Models\Order;
  */
 class OrderDetails extends Model
 {
-    //次要訂單詳情
+    //主要訂單
     /**
      * The "type" of the auto-incrementing ID.
      *
@@ -37,6 +37,6 @@ class OrderDetails extends Model
     protected $fillable = ['created_at', 'updated_at', 'subTotal', 'shipping_fee', 'total', 'product_qty', 'name', 'phone', 'email', 'address', 'pay_way', 'delivery_way', 'shop_address', 'status', 'ps'];
     public function order()
     {
-        return $this->hasOne(Order::class,'order_id','id',);
+        return $this->hasMany(Order::class,'order_id','id',);
     }
 }

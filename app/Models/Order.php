@@ -15,7 +15,7 @@ use App\Models\OrderDetails;
  */
 class Order extends Model
 {
-    //主要訂單
+    //訂單商品詳情
     /**
      * The "type" of the auto-incrementing ID.
      *

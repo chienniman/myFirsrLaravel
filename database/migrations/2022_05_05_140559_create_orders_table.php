@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    //附屬資料
     /**
      * Run the migrations.
      *
