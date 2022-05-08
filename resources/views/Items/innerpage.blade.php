@@ -132,12 +132,16 @@
             })
             .then(response => response.json())
             .catch(error => {
-                alert('新增失敗，請再試一次');
-                return error
+                alert(error.message+'新增失敗，請再試一次');
+                return 'error';
             })
             .then(response =>{
-                console.log(response);
-                
+                if(response.result!='error'){
+                    alert('新增成功，已加到購物車');
+                }else{
+                    alert('新增失敗'+response.message);
+                }
+
             });
         }
     </script>

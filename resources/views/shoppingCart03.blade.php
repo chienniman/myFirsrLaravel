@@ -53,7 +53,7 @@
         <div class="cuz_data">
             <span class="fs-3">寄送資料</span>
             <div class="mt-3">
-                <form action="/shoppingCart04" method="POST">
+                <div>
                     <div>
                         <label for="cuz_name" class="form-label fs-4">姓名</label>
                         <input type="text" name="cuz_name"  class="form-control ps-4 rounded" placeholder="王小明">
@@ -78,7 +78,7 @@
                             <input type="text" name="cuz_address"  class="form-control ps-4 rounded" placeholder="地址">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <div class="total d-flex flex-row-reverse">

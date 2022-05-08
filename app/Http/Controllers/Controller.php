@@ -70,38 +70,39 @@ class Controller extends BaseController
     //商品相關
 
     public function innerpage($id){
-       
+
         $item=Item::where('id',$id)->get();
         $item=$item[0];
         return view('Items/innerpage',compact('item'));
     }
     public function add_to_cart(Request $request){
-        // $product_id=$request->product_id;
-        // $residual_amount=Item::where('id',$product_id)->get()->items_number;
-        // // 購買大於顧存
-        // if( $request->qty>$residual_amount){
-        //     $result=[
-        //         'result'=>'error',
-        //         'message'=>'超過庫存數量，請聯絡客服'
-        //     ];
-        //     return $result;
-        // }
-        // //購買數目異常
-        // elseif( $request->qty<1){
-        //     $result=[
-        //         'result'=>'error',
-        //         'message'=>'購買數量異常，請重新嘗試'
-        //     ];
-        //     return $result;
-        // }
-        // //尚未登入卻想要購買
-        // elseif(!Auth::check()){
-        //     $result=[
-        //         'result'=>'error',
-        //         'message'=>'請登入後再購買'
-        //     ];
-        //     return $result;
-        // }
+        $product_id=$request->product_id;
+        $residual_amount=Item::where('id',$product_id)->get();
+        $residual_amount=$residual_amount[0]->items_number;
+        //購買大於顧存
+        if( $request->qty>$residual_amount){
+            $result=[
+                'result'=>'error',
+                'message'=>'超過庫存數量，請聯絡客服'
+            ];
+            return $result;
+        }
+        //購買數目異常
+        elseif( $request->qty<1){
+            $result=[
+                'result'=>'error',
+                'message'=>'購買數量異常，請重新嘗試'
+            ];
+            return $result;
+        }
+        //尚未登入卻想要購買
+        elseif(!Auth::check()){
+            $result=[
+                'result'=>'error',
+                'message'=>'請登入後再購買'
+            ];
+            return $result;
+        }
         $id = Auth::id();
         ShoppingCart::create([
         "product_id"=>$request->product_id,
@@ -132,7 +133,7 @@ class Controller extends BaseController
         $path=Storage::disk('local')->put('public/banner', $request->items_img);
         $path='/'.str_replace("public","storage",$path);
         $item=Item::create([
-            
+
             "items_img_path"=>$path,
             "items_name"=>$request->items_name,
             "items_price"=>$request->items_price,

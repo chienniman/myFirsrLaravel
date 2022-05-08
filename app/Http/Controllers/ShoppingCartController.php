@@ -52,8 +52,19 @@ class ShoppingCartController extends Controller
         return view('shoppingCart03');
     }
     public function step4(Request $request){
-        dd($request->all());
+        $cuz_name=$request->cuz_name;
+        $cuz_phone=$request->cuz_phone;
+        $cuz_email=$request->cuz_email;
+        $cuz_address=$request->cuz_address;
+        session([
+            'cuz_name' =>$cuz_name,
+            'cuz_phone'=> $cuz_phone,
+            'cuz_email'=> $cuz_email,
+            'cuz_address'=> $cuz_address,
+        ]);
+        dump(session()->all());
         return view('shoppingCart04');
+
     }
     public function add_product(){
         dd('fetch成功拉!');
