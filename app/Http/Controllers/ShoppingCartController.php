@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 class ShoppingCartController extends Controller
 {
     public function step1(){
+
         $user=Auth::id();
         $shopping_cart=ShoppingCart::where('user_id',$user)->get();
         // for($i=0;$i<count( $shopping_cart);$i++){
@@ -33,13 +34,25 @@ class ShoppingCartController extends Controller
         // };
         return view('shoppingCart',compact('shopping_cart'));
     }
-    public function step2(){
+    public function step2(Request $request){
+        $qty=$request->qty;
+        session([
+            'amount' =>  $qty,
+        ]);
         return view('shoppingCart02');
     }
-    public function step3(){
+    public function step3(Request $request){
+
+        $payway=$request->payway;
+        $delivery=$request->delivery;
+        session([
+            'payway' =>$payway,
+            'delivery'=> $delivery,
+        ]);
         return view('shoppingCart03');
     }
-    public function step4(){
+    public function step4(Request $request){
+        dd($request->all());
         return view('shoppingCart04');
     }
     public function add_product(){

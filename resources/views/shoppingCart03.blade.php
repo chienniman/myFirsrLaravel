@@ -8,7 +8,8 @@
 <body>
 @section('shoppingMain03')
 <section id="shopping3">
-    <div class="container-lg rounded">
+    <form class="container-lg rounded" action="/shoppingCart04" method="POST">
+        @csrf
         <h1 class="fw-bold">購物車</h1>
         <div class="shopping_progress border-bottom border-1 mb-4 pb-4">
             <div class="row">
@@ -52,7 +53,7 @@
         <div class="cuz_data">
             <span class="fs-3">寄送資料</span>
             <div class="mt-3">
-                <form action="..." method="get">
+                <form action="/shoppingCart04" method="POST">
                     <div>
                         <label for="cuz_name" class="form-label fs-4">姓名</label>
                         <input type="text" name="cuz_name"  class="form-control ps-4 rounded" placeholder="王小明">
@@ -116,13 +117,11 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/shoppingCart04">
-                        <button class="btn btn-primary btn-lg px-5">前往付款</button>
-                    </a>
+                    <button class="btn btn-primary btn-lg px-5" type="submit">前往付款</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 @endsection
 

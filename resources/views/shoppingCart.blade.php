@@ -71,7 +71,8 @@
               </div>
             </div>
           </div>
-          <div class="orderList">
+        <form class="orderList" action="/shoppingCart02" method="POST">
+            @csrf
             <span class="fs-3">訂單明細</span>
             @foreach ($shopping_cart as $data )
             <div class="order mt-3 pt-3 pb-4 mb-3 border-bottom border-1">
@@ -92,19 +93,22 @@
                   </div>
                   <div class="d-flex align-items-center">
                     <div class="me-4">
-                        <span>價格:</span>
-                        {{$data->Item2->items_price}}元
+                        {{-- <span>價格:</span>
+                        {{$data->Item2->items_price}}元 --}}
+                        <label for="price">價格</label>
+                        <input style="width:200px; height:20px" type="text" id="price" name="price[]" value="{{$data->Item2->items_price}}">
                     </div>
                     <div>
-                        <span>數量:</span>
-                      <input type="number" value="{{$data->qty}}" min="0" max="{{$data->Item2->items_number}}">
-                      <span>{{$data->qty}}</span>
+                        {{-- <span>數量:</span> --}}
+                      <label for="qty">數量:</label>
+                      <input type="number" value="{{$data->qty}}" name="qty[]" min="0" max="{{$data->Item2->items_number}}">
+                      {{-- <span>{{$data->qty}}</span> --}}
                     </div>
                   </div>
                 </div>
               </div>
             @endforeach
-          </div>
+
           <?php
            $subtotal=0;
            $total=0;
@@ -152,12 +156,11 @@
                 </a>
               </div>
               <div>
-                <a class="text-light" href="/shoppingCart02">
-                  <button class="btn btn-primary btn-lg">下一步</button>
-                </a>
+                  <button class="btn btn-primary btn-lg text-light" type="submit">下一步</button>
               </div>
             </div>
           </div>
+        </form>
         </div>
       </section>
       @endsection

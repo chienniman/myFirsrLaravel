@@ -8,7 +8,8 @@
 <body>
 @section('shoppingMain02')
     <section id="shopping2">
-        <div class="container-lg rounded">
+        <form class="container-lg rounded" action="/shoppingCart03" method="POST">
+            @csrf
             <h1 class="fw-bold">購物車</h1>
             <div class="shopping_progress border-bottom border-1 mb-4 pb-4">
                 <div class="row">
@@ -52,30 +53,30 @@
             <div class="payway">
                 <span class="fs-3">付款方式</span>
                 <div class="mt-3">
-                    <form action="..." method="get">
-                        <label class="d-block ms-3 pt-4 pb-4  border-bottom">
-                            <input type="radio" name="payway" class="me-1">信用卡付款
+                    <div >
+                        <label class="d-block ms-3 pt-4 pb-4  border-bottom" >
+                            <input type="radio" name="payway" class="me-1" value="1">信用卡付款
                         </label>
                         <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="payway" class="me-1">網路 ATM
+                            <input type="radio" name="payway" class="me-1"  value="2">網路 ATM
                         </label>
                         <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="payway" class="me-1">超商代碼
+                            <input type="radio" name="payway" class="me-1"  value="3">超商代碼
                         </label>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="develivery">
                 <span class="fs-3">運送方式</span>
                 <div class="mt-3">
-                    <form action="..." method="get">
+                    <div>
                         <label class="d-block ms-3 pt-4 pb-4  border-bottom">
-                            <input type="radio" name="develivery" class="me-1">黑貓宅配
+                            <input type="radio" name="delivery" class="me-1"  value="1">黑貓宅配
                         </label>
                         <label class="d-block ms-3 pt-4 pb-4 border-bottom">
-                            <input type="radio" name="develivery" class="me-1">超商店到店
+                            <input type="radio" name="delivery" class="me-1"  value="2">超商店到店
                         </label>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="total d-flex flex-row-reverse">
@@ -120,7 +121,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 @endsection
 
