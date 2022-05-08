@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
+use App\Models\User;
 /**
  * @property integer $id
  * @property mixed $created_at
@@ -34,9 +35,13 @@ class OrderDetails extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'subTotal', 'shipping_fee', 'total', 'product_qty', 'name', 'phone', 'email', 'address', 'pay_way', 'delivery_way', 'shop_address', 'status', 'ps'];
+    protected $fillable = ['created_at', 'updated_at', 'subTotal', 'shipping_fee', 'total', 'product_qty', 'name', 'phone', 'email', 'address', 'pay_way', 'delivery_way', 'shop_address', 'status', 'ps','user_id'];
     public function order()
     {
         return $this->hasMany(Order::class,'order_id','id',);
+    }
+    public function user()
+    {
+        return $this->hasMany(user::class,'id','user_id',);
     }
 }

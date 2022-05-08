@@ -22,11 +22,12 @@ use App\Models\Item;
 |
 */
 Route::get('/', [NewsController::class, 'index']);
+
 Route::get('/add/product', [ShoppingCartController::class, 'add_product']);
 Route::get('/shoppingCart', [ShoppingCartController::class, 'step1']);
-Route::get('/shoppingCart02', [ShoppingCartController::class, 'step2']);
-Route::get('/shoppingCart03', [ShoppingCartController::class, 'step3']);
-Route::get('/shoppingCart04', [ShoppingCartController::class, 'step4']);
+Route::post('/shoppingCart02', [ShoppingCartController::class, 'step2']);
+Route::post('/shoppingCart03', [ShoppingCartController::class, 'step3']);
+Route::post('/shoppingCart04', [ShoppingCartController::class, 'step4']);
 Route::get('/', function () {
     $data = DB::table('news')->get();
     $data1=DB::table('news')->whereBetween('id', [1, 5])->get();
