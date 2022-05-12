@@ -21,6 +21,7 @@ use App\Models\Item;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/save_edited_order', [ShoppingCartController::class, 'save_order']);
 Route::get('/edit_order/{id}', [ShoppingCartController::class, 'edit_order']);
 Route::get('/order', [ShoppingCartController::class, 'order_management']);
 Route::get('/show_order', [ShoppingCartController::class, 'show_order']);

@@ -14,7 +14,8 @@
     <div class="mt-3 mb-3">
         <div class="comment border-bottom border-3 mb-3">
             <div class="row  mb-3">
-                <div class="row d-flex justify-content-between">
+                <form  action="/save_edited_order" method="POST" class="row d-flex justify-content-between">
+                    @csrf
                     <div class="col-9 d-flex">
                          <div class="d-flex col-6">
                              <div>
@@ -74,10 +75,10 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-success" onclick="location.href='/edit_order/{{$item->id}}'">修改訂單</button>
+                            <button class="btn btn-success" type="submit">修改訂單</button>
                         </div>
                     </div>
-                </div>
+                </form >
             </div>
         </div>
     </div>

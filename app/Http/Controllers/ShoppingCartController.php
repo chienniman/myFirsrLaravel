@@ -121,14 +121,20 @@ class ShoppingCartController extends Controller
         return view('order_management',compact('history_shopping_data'));
     }
     public function edit_order($id){
-
+        session([
+            'order_id'=>$id,
+        ]);
         $edited_shopping_data=OrderDetails::where('id',$id)->get();
         return view('order_edit',compact('edited_shopping_data'));
     }
-    public function save_order(Request $requsst){
-
-        $edited_shopping_data=OrderDetails::where('id',$id)->get();
-        return view('order_edit',compact('edited_shopping_data'));
+    public function save_order(Request $request){
+        $history_shopping_data=OrderDetails::where('user_id',Auth::id())->get();
+        $id=session()->get('order_id');
+        $edited_order=OrderDetails::find($id);
+        $edited_order->status=$request->status;
+        $edited_order->ps=$request->ps;
+        $edited_order->save();
+        return view('order_management',compact('history_shopping_data'));
     }
 
 }

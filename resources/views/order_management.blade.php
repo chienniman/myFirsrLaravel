@@ -19,6 +19,9 @@
                          <div class="d-flex col-6">
                              <div>
                                 <h3 class="fw-bold">訂單</h3>&nbsp;&nbsp;
+                                <div>
+                                    <a href="/order" class="btn btn-success">更新狀態</a>
+                                </div>
                              </div>
                          </div>
                          <div class="row col-6">
@@ -29,7 +32,7 @@
                                     <th>信箱</th>
                                     <th>總金額</th>
                                     <th>訂單狀態</th>
-                                    <th>功能</th>
+                                    <th>備註</th>
                                 </tr>
                             </div>
                             @foreach ($history_shopping_data as $item)
@@ -38,18 +41,20 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->total}}</td>
+                                <td>{{$item->status}}</td>
+                                <td>{{$item->ps}}</td>
                                 <td>
                                     {{-- 1->訂單成立(未付款), 2->已付款, 3->已出貨, 4->已結單, 5->已取消 --}}
                                     @if ($item->status == 1)
-                                        訂單成立(未付款)
+                                        未付款
                                     @elseif ($item->status == 2)
                                         已付款
                                     @elseif ($item->status == 3)
                                         已出貨
                                     @elseif ($item->status == 4)
+                                        已取貨
+                                    @elseif ($item->status == 5)
                                         已結單
-                                    @else
-                                        已取消
                                     @endif
                                 </td>
 
