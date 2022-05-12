@@ -76,7 +76,7 @@
             <span class="fs-3">訂單明細</span>
             @foreach ($shopping_cart as $data )
             <div class="order mt-3 pt-3 pb-4 mb-3 border-bottom border-1">
-                <div class="d-flex justify-content-between">
+                <div>
                   <div class="d-flex">
                     <div>
                       <img
@@ -93,27 +93,27 @@
                   </div>
                   <div class="d-flex align-items-center">
                     <div class="me-4">
-                        {{-- <span>價格:</span>
-                        {{$data->Item2->items_price}}元 --}}
-                        <label for="price">價格</label>
-                        <input style="width: 100px" type="text" id="price" name="price[]" value="{{$data->Item2->items_price}}">
+                        <span>價格:{{$data->Item2->items_price}}</span>
                     </div>
                     <div>
-                        <span id="plus">+</span>
+                        <span id="plus" onclick="add_number(data-id)">+</span>
                         <label for="qty">數量:</label>
-                        <input style="width: 100px" type="number"  name="qty[]" min="0" max="{{$data->Item2->items_number}}">
-                        <span id="minus">-</span>
+                        <input
+                        data-id="{{$data->id}}"
+                        id="number" type="number"  name="qty[]" min="0" max="{{$data->Item2->items_number}}" readonly value="{{$data->qty}}">
+                        <span id="minus" onclick="minus_number(data-id)">-</span>
                     </div>
+                    <button class="btn btn-danger" style="margin-left: 200px;">
+                        刪除此商品
+                    </button>
                   </div>
                 </div>
               </div>
             @endforeach
-
           <?php
            $subtotal=0;
            $total=0;
            $fee=100;
-
           foreach ($shopping_cart as $data) {
             $subtotal+=$data->qty*$data->Item2->items_price;
           };
@@ -163,8 +163,19 @@
         </form>
         </div>
       </section>
+      <script>
+          const minus=document.querySelectorAll("#minus");
+          const plus=document.querySelectorAll("#plus");
+          const number=document.querySelectorAll("#number");
+          //必須以該形式宣告
+          add_number=function(id){
+            console.log(id);
+          };
+          minus_number=function(){
+                console.log(plus);
+          };
+      </script>
       @endsection
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
