@@ -69,10 +69,10 @@
                     <div class="row justify-content-center gx-3">
                         <label for="cuz_address" class="form-label fs-4">地址</label>
                         <div class="col-6 ps-0">
-                            <input type="text" name="cuz_address"  class="form-control ps-4 rounded" placeholder="城市">
+                            <input type="text" name="cuz_city"  class="form-control ps-4 rounded" placeholder="城市">
                         </div>
                         <div class="col-6 ps-0">
-                            <input type="text" name="cuz_address" class="form-control ps-4 rounded" placeholder="郵遞區號">
+                            <input type="text" name="cuz_code" class="form-control ps-4 rounded" placeholder="郵遞區號">
                         </div>
                         <div class=" col-12 p-0 mt-2">
                             <input type="text" name="cuz_address"  class="form-control ps-4 rounded" placeholder="地址">

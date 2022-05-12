@@ -50,6 +50,13 @@
                         Contact
                     </a>
                 </li>
+                <li >
+                   @if (Auth::id()==3)
+                   <a class="dropdown-item d-flex justify-content-center" href="#">
+                    去後台
+                     </a>
+                   @endif
+                </li>
                 <li class="d-flex justify-content-center">
                     <div>
                         <span>
@@ -87,20 +94,19 @@
                     <a class="nav-link text-black" href="/comment">Comments</a>
                 </li>
             </ul>
-            {{-- <ul class="p-0 mb-0 d-flex align-items-center">
-                <li>
-                    <a class="nav-link" href="/banner">Banners Mangement</a>
-                </li>
-            </ul>
-            <ul class="p-0 mb-0 d-flex align-items-center">
-                <li>
-                    <a class="nav-link" href="/itemsList">Items List</a>
-                </li>
-            </ul> --}}
             <ul class="p-0 mb-0 d-flex align-items-center">
                 <li>
                     <a class="nav-link" href="#">Contact</a>
                 </li>
+            </ul>
+            <ul class="p-0 mb-0 d-flex align-items-center">
+                <li >
+                    @if (Auth::id()==3)
+                    <a class="dropdown-item d-flex justify-content-center" href="/dashboard">
+                     去後台
+                      </a>
+                    @endif
+                 </li>
             </ul>
             <div class="function_zone d-flex align-items-center">
                 <div class="cart me-3">

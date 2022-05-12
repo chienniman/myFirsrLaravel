@@ -48,8 +48,17 @@
                 </td>
                 <td>
                     <div class="row">
-                        <div class="row col-6">
+                        <div class="row col-3">
                             <p class="text-center pt-3">{{$data->email}}</p>
+                        </div>
+                        <div class="row col-3">
+                            @if ($data->power===1)
+                            <p class="text-center pt-3">無上大總統</p>
+                            @elseif ($data->power===2)
+                            <p class="text-center pt-3">一人之下總理</p>
+                            @else
+                            <p class="text-center pt-3">可憐下賤貧民</p>
+                            @endif
                         </div>
                         <div class="row col-6 flex-column align-items-center">
                             <a href="/banner/edit/{{$data->id}}" class="btn btn-success col-6 mb-3">編輯</a>

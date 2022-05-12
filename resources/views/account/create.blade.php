@@ -45,13 +45,19 @@
             required autocomplete="new-password">
         </div>
         <div class="mb-3 mt-3">
-            <label for="password_confirmation" :value="__('Confirm Password')" >使用者密碼</label>
+            <label for="password_confirmation" :value="__('Confirm Password')" >確認使用者密碼</label>
             <input id="password_confirmation" class="block mt-1 w-full"
             type="password"
             name="password_confirmation" required>
         </div>
+        <div class="mb-3 mt-3">
+            <label for="power">使用者權限</label>
+            <input id="power" class="block mt-1 w-full"
+            type="number"
+            name="power" required>
+        </div>
         <div>
-            <button class="btn btn-primary"  type="submit">確認密碼</button>
+            <button class="btn btn-primary"  type="submit">確認送出</button>
         </div>
     </form>
      <!-- Validation Errors -->

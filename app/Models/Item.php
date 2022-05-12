@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\ShoppingCart;
+use App\Models\Order;
 class Item extends Model
 {
     use HasFactory;
@@ -22,5 +23,9 @@ class Item extends Model
     public function shopping_cart()
     {
         return $this->hasMany(ShoppingCart::class,'product_id','id',);
+    }
+    public function  order()
+    {
+        return $this->hasMany(Order::class,'product_id','id',);
     }
 }

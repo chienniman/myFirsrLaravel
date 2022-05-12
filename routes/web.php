@@ -21,9 +21,9 @@ use App\Models\Item;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [NewsController::class, 'index']);
-
-Route::get('/add/product', [ShoppingCartController::class, 'add_product']);
+Route::get('/edit_order/{id}', [ShoppingCartController::class, 'edit_order']);
+Route::get('/order', [ShoppingCartController::class, 'order_management']);
+Route::get('/show_order', [ShoppingCartController::class, 'show_order']);
 Route::get('/shoppingCart', [ShoppingCartController::class, 'step1']);
 Route::post('/shoppingCart02', [ShoppingCartController::class, 'step2']);
 Route::post('/shoppingCart03', [ShoppingCartController::class, 'step3']);
@@ -43,6 +43,9 @@ Route::get('/', function () {
 Route::get('/log_in', function () {
     return view('/log_in');
 });
+// Route::get('/arr', function () {
+//     return view('/welcome');
+// });
 // Route::get('/', function () {
 //     return view('index');
 // });

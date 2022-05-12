@@ -13,9 +13,15 @@ use App\Models\Item;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\ShoppingCart;
+use App\Models\OrderDetails;
+use App\Models\Order;
+use App\Mail\OrderComplete;
 use App\Controllers\FilesController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
+
 class ShoppingCartController extends Controller
 {
     public function step1(){
@@ -52,21 +58,78 @@ class ShoppingCartController extends Controller
         return view('shoppingCart03');
     }
     public function step4(Request $request){
-        $cuz_name=$request->cuz_name;
-        $cuz_phone=$request->cuz_phone;
-        $cuz_email=$request->cuz_email;
-        $cuz_address=$request->cuz_address;
-        session([
-            'cuz_name' =>$cuz_name,
-            'cuz_phone'=> $cuz_phone,
-            'cuz_email'=> $cuz_email,
-            'cuz_address'=> $cuz_address,
+
+       $merch=ShoppingCart::where('user_id',Auth::id())->get();
+       $subtotal=0;
+       //運費計算
+       $fee=0;
+       if(session()->get('delivery')==1){
+            $fee=150;
+       }else{
+           $fee=80;
+       }
+       foreach($merch as $value){
+            $subtotal+=$value->qty*$value->Item2->items_price;
+       }
+        //主要訂單成立
+        $order=OrderDetails::create([
+            'subTotal'=>$subtotal,
+            'shipping_fee'=>$fee,
+            'total'=>$subtotal+$fee,
+            'product_qty'=>count(session()->get('amount')), //商品的數量
+            'name'=>$request->cuz_name,
+            'phone'=>$request->cuz_phone,
+            'email'=>$request->cuz_email,
+            'address'=>$request->cuz_city.$request->cuz_code.$request->cuz_address,
+            'pay_way'=> session()->get('payway'),
+            'delivery_way'=> session()->get('delivery'),
+            'status'=>1,
+            'ps',
+            'user_id'=>Auth::id(),
         ]);
-        dump(session()->all());
-        return view('shoppingCart04');
+        //不同送貨地址
+        if( session()->get('delivery')==1){
+            $order->address=$request->cuz_city.$request->cuz_code.$request->cuz_address;
+            //黑貓宅急便
+        }else{
+            $order->shop_address=$request->cuz_city.$request->cuz_code.$request->cuz_address;
+            //蝦皮店到店
+        }
+        $order->save();
+        //訂單明細，用迴圈一筆一筆存入
+        foreach($merch as $value){
+            Order::create([
+                'product_id'=>$value->product_id,
+                'product_price'=>$value->Item2->items_price,
+                'qty'=>$value->qty,
+                'order_id'=>$order->id,
+            ]);
+        };
+        //清除購物車功能
+        ShoppingCart::where('user_id',Auth::id())->delete();
+        Mail::to('cscs851210max@gmail.com')->send(new OrderComplete);
+        return redirect('/show_order');
 
     }
-    public function add_product(){
-        dd('fetch成功拉!');
+    public function show_order(){
+        $history_shopping_data=OrderDetails::where('user_id',Auth::id())->get();
+        return view('shoppingCart04',compact('history_shopping_data'));
     }
+    public function order_management(){
+
+        $history_shopping_data=OrderDetails::where('user_id',Auth::id())->get();
+        return view('order_management',compact('history_shopping_data'));
+    }
+    public function edit_order($id){
+
+        $edited_shopping_data=OrderDetails::where('id',$id)->get();
+        return view('order_edit',compact('edited_shopping_data'));
+    }
+    public function save_order(Request $requsst){
+
+        $edited_shopping_data=OrderDetails::where('id',$id)->get();
+        return view('order_edit',compact('edited_shopping_data'));
+    }
+
 }
+

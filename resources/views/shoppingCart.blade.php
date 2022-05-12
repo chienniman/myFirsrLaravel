@@ -96,13 +96,13 @@
                         {{-- <span>價格:</span>
                         {{$data->Item2->items_price}}元 --}}
                         <label for="price">價格</label>
-                        <input style="width:200px; height:20px" type="text" id="price" name="price[]" value="{{$data->Item2->items_price}}">
+                        <input style="width: 100px" type="text" id="price" name="price[]" value="{{$data->Item2->items_price}}">
                     </div>
                     <div>
-                        {{-- <span>數量:</span> --}}
-                      <label for="qty">數量:</label>
-                      <input type="number" value="{{$data->qty}}" name="qty[]" min="0" max="{{$data->Item2->items_number}}">
-                      {{-- <span>{{$data->qty}}</span> --}}
+                        <span id="plus">+</span>
+                        <label for="qty">數量:</label>
+                        <input style="width: 100px" type="number"  name="qty[]" min="0" max="{{$data->Item2->items_number}}">
+                        <span id="minus">-</span>
                     </div>
                   </div>
                 </div>
@@ -169,6 +169,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
-    ></script>
+     ></script>
   </body>
 </html>

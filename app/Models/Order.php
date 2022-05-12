@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderDetails;
+use App\Models\Item;
 /**
  * @property integer $id
  * @property mixed $created_at
@@ -31,5 +32,9 @@ class Order extends Model
     public function order_details()
     {
         return $this->hasOne(OrderDetails::class,'id','order_id',);
+    }
+    public function product()
+    {
+        return $this->hasOne(Item::class,'id','product_id',);
     }
 }

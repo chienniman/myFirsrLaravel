@@ -24,7 +24,7 @@
                     <x-nav-link :href="'/account'" :active="request()->Is('account*')">
                         會員管理
                     </x-nav-link>
-                    <x-nav-link :href="'/order'" :active="request()->Is('order*')">
+                    <x-nav-link :href="'order'" :active="request()->Is('order*')">
                         訂單頁面管理
                     </x-nav-link>
                     <x-nav-link :href="'/'">
